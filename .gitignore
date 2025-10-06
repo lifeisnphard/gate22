@@ -26,3 +26,5 @@ logs/
 # Secrets
 *.secrets.*
 .secrets.*
+# MkDocs build output
+site/

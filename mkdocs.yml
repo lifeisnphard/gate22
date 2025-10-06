@@ -1,0 +1,146 @@
+site_name: Gate22 Documentation
+site_description: Comprehensive documentation for Gate22 - Open-Source MCP Gateway and Control Plane
+site_author: ACI.dev by AipoLabs
+site_url: https://lifeisnphard.github.io/gate22/
+
+repo_name: lifeisnphard/gate22
+repo_url: https://github.com/lifeisnphard/gate22
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  
+  icon:
+    repo: fontawesome/brands/github
+  
+  logo: https://raw.githubusercontent.com/lifeisnphard/gate22/main/frontend/public/aci-dev-full-logo-light-bg.svg
+  favicon: https://raw.githubusercontent.com/lifeisnphard/gate22/main/frontend/public/favicon.ico
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  
+  - Architecture:
+    - architecture/overview.md
+    - architecture/authentication.md
+  
+  - Backend:
+    - backend/overview.md
+  
+  - Frontend:
+    - frontend/overview.md
+  
+  - MCP Servers:
+    - mcp-servers/overview.md
+  
+  - API Reference: api-reference.md
+  - Deployment: deployment.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search:
+      lang: en
+  - minify:
+      minify_html: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/lifeisnphard/gate22
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/invite/UU2XAnfHJh
+    - icon: fontawesome/brands/twitter
+      link: https://x.com/AipoLabs
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/aci-dev-by-aipolabs/
+  
+  analytics:
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: Thanks for your feedback! Help us improve by opening an issue.
+
+copyright: Copyright &copy; 2024 ACI.dev by AipoLabs
