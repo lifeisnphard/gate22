@@ -38,3 +38,124 @@ gate22/
 ## Backend
 
 ### Code Style & Quality
+
+We follow strict code quality standards:
+
+- **Formatting & Linting**: We use `ruff` for code formatting and linting
+- **Type Checking**: We use `mypy` for static type checking
+- **Import Linting**: We use `lint-imports` for import order validation
+- **Pre-commit Hooks**: Install with `pre-commit install`
+
+### Development Setup
+
+1. **Prerequisites**:
+   - Python 3.12+
+   - Docker and Docker Compose
+   - `uv` package manager
+
+2. **Install dependencies**:
+   ```bash
+   cd backend
+   uv sync
+   source .venv/bin/activate
+   ```
+
+3. **Install pre-commit hooks**:
+   ```bash
+   pre-commit install
+   ```
+
+4. **Environment variables**:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Set the following in `.env.local`:
+   - `CONTROL_PLANE_OPENAI_API_KEY`
+   - `MCP_OPENAI_API_KEY`
+   - `CLI_OPENAI_API_KEY`
+
+5. **Start services**:
+   ```bash
+   docker compose up --build
+   ```
+
+### Testing
+
+Run tests in ephemeral container:
+```bash
+docker compose exec test-runner pytest
+```
+
+### Database Migrations
+
+- Check for changes: `docker compose exec runner alembic check`
+- Generate migration: `docker compose exec runner alembic revision --autogenerate -m "description"`
+- Apply migration: `docker compose exec runner alembic upgrade head`
+- Revert migration: `docker compose exec runner alembic downgrade -1`
+
+## Frontend
+
+### Core Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS v4
+- **UI Components**: Radix UI primitives + shadcn/ui components
+- **State Management**: Zustand + React Query (TanStack Query)
+- **Forms**: React Hook Form + Zod validation
+- **Testing**: Vitest with MSW for API mocking
+
+### Development Setup
+
+1. **Install dependencies**:
+   ```bash
+   cd frontend
+   pnpm install
+   ```
+
+2. **Configure environment**:
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Start development server**:
+   ```bash
+   pnpm dev
+   ```
+
+### Development Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm lint` - Run ESLint
+- `pnpm format` - Format code with Prettier
+
+### Conventions
+
+- API functions should be placed in feature-specific `api/` folders or `src/lib/api/`
+- Use TypeScript strict mode
+- Follow existing component patterns and naming conventions
+- Prefer composition over inheritance
+
+## Pre-commit Hooks
+
+The repository uses pre-commit hooks for code quality:
+
+### General
+- Trailing whitespace removal
+- End-of-file fixer
+- YAML/JSON validation
+- Large file checks
+- Merge conflict detection
+
+### Frontend
+- Format check: `pnpm run format:check`
+- Lint check: `pnpm run lint`
+- Build check: `pnpm run build`
+
+### Backend
+- Format: `uv run ruff format .`
+- Lint: `uv run ruff check . --fix`
+- Prettier (JSON): Format JSON files
+- Type check: `uv run mypy .`
+- Import linter: `uv run lint-imports`
